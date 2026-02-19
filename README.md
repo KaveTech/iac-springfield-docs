@@ -9,7 +9,7 @@ First, we need to fill in the empty fields like base_name and the folder where t
 Then we'll run a ``terraform init`` and create the state bucket by executing
 
 ```bash
-terraform apply --target=module.state-bucket
+terraform apply --target=module.state_bucket
 ```
 
 When the command finishes, it will return the name of the created bucket at the end of the command

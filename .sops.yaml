@@ -1,0 +1,3 @@
+creation_rules:
+  - path_regex: files/secrets/.*\.ya?ml$
+    gcp_kms: projects/springfield-docs-pro-scuk/locations/europe-west1/keyRings/springfield-docs-sops-keyring/cryptoKeys/springfield-docs-sops-key

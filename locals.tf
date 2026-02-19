@@ -1,9 +1,10 @@
 locals {
-  base_name      = ""
-  pretty_name    = ""
+  base_name   = "springfield-docs"
+  pretty_name = "Springfield Docs"
   project = {
-    id = google_project.project.project_id #google_project.project[0].project_id
-    number = google_project.project.number #google_project.project[0].number
+    id     = google_project.project.project_id
+    number = google_project.project.number
   }
   region = "europe-west1"
+  domain = "springfield-docs.kave.tech"
 }
