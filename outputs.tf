@@ -34,3 +34,11 @@ output "github_actions_sa_key" {
 output "kms_key_id" {
   value = google_kms_crypto_key.sops.id
 }
+
+output "firebase_url" {
+  value = module.gcp_azure_iap.firebase_url
+}
+
+output "cloud_run_url" {
+  value = module.gcp_azure_iap.cloud_run_url
+}

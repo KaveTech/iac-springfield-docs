@@ -24,17 +24,39 @@ resource "google_cloud_run_v2_service" "docs" {
       }
     }
 
+    volumes {
+      name = "config"
+      gcs {
+        bucket    = google_storage_bucket.caddy_config.name
+        read_only = true
+      }
+    }
+
     containers {
-      image = "nginx:stable-alpine"
+      image = "caddy:alpine"
 
       volume_mounts {
         name       = "docs"
-        mount_path = "/usr/share/nginx/html"
+        mount_path = "/app/docs"
+      }
+
+      volume_mounts {
+        name       = "config"
+        mount_path = "/etc/caddy"
       }
 
       ports {
-        container_port = 80
+        container_port = 8080
       }
+
+      command = [
+        "caddy",
+        "run",
+        "--config",
+        "/etc/caddy/Caddyfile",
+        "--adapter",
+        "caddyfile"
+      ]
 
       resources {
         limits = {

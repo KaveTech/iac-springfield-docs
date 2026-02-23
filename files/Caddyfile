@@ -1,0 +1,23 @@
+:8080 {
+	root * /app/docs
+	file_server
+	encode zstd gzip
+	
+	@html path *.html
+	header @html Content-Type "text/html; charset=utf-8"
+	
+	@css path *.css
+	header @css Content-Type "text/css; charset=utf-8"
+	
+	@js path *.js
+	header @js Content-Type "application/javascript; charset=utf-8"
+	
+	@json path *.json
+	header @json Content-Type "application/json; charset=utf-8"
+	
+	@txt path *.txt
+	header @txt Content-Type "text/plain; charset=utf-8"
+	
+	@xml path *.xml
+	header @xml Content-Type "application/xml; charset=utf-8"
+}

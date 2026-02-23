@@ -25,30 +25,10 @@ resource "google_compute_region_network_endpoint_group" "docs" {
   }
 }
 
-resource "google_compute_backend_service" "docs" {
-  name    = format("%s-backend", local.base_name)
-  project = local.project.id
-
-  protocol              = "HTTPS"
-  load_balancing_scheme = "EXTERNAL_MANAGED"
-
-  backend {
-    group = google_compute_region_network_endpoint_group.docs.id
-  }
-
-  iap {
-    enabled = true
-  }
-
-  log_config {
-    enable = true
-  }
-}
-
 resource "google_compute_url_map" "docs" {
   name            = format("%s-url-map", local.base_name)
   project         = local.project.id
-  default_service = google_compute_backend_service.docs.id
+  default_service = module.gcp_azure_iap.backend_service_id
 }
 
 resource "google_compute_target_https_proxy" "docs" {
